@@ -2,30 +2,27 @@ import React, { useState } from "react";
 import DisplayBlog from "./DisplayBlog";
 
 const Blog = () => {
+
+    const [title, setTitle] = useState("");
     const [post, setpost] = useState('');
     const [submitPost, setSubmitPost] = useState([]);
-    const [submitTitle, setSubmitTitle] = useState([]);
-    const [title, setTitle] = useState("");
+    // const [submitTitle, setSubmitTitle] = useState([]);
     //////////////////////////////////////////////
-    console.log("post", post)
     const postFun = (e) => {
         setpost(e.target.value);
-         
+
     }
 
     ///////////////////////////////////////////////////////
     const submitBlog = () => {
-        
-        setSubmitPost([...submitPost, post]);
-        setSubmitTitle([...submitTitle, title]);
-        // setSubmitPost([ post]);
-        // setSubmitTitle( [title]);
-        setpost('');
-        setTitle('');
-        
-   }
-    // console.log("submitBlog",submit);
-    // console.log("submitTitle",submitTitle);
+        setSubmitPost([...submitPost, title, post]);
+        // setSubmitTitle([...submitTitle, title]) ;
+        // setpost('');
+        // setTitle('');
+
+    }
+
+    console.log("submitPost",submitPost);
     ///////////////////////////////////////////////////////    
 
     const titleFun = (e) => {
@@ -36,7 +33,7 @@ const Blog = () => {
         setpost('');
         setTitle('');
     }
-        
+
     return (
         <>
             {/* <form onSubmit={this.submitBlog} > */}
@@ -60,16 +57,19 @@ const Blog = () => {
             </div>
 
             <div>
-                {submitTitle.map((index) =>(
+                
+                {submitPost.map((i) => (
+                    // return(
                     <DisplayBlog
-                        key={index}
-                        submitTitle={submitTitle}
-                        submitPost={submitPost}
-                         />
-                ))}
-
+                        key={i}
+                        index={i}
+                        title={title}
+                        post={post}
+                    />
+                     )
+                )}
+                
             </div>
-            {/* </form> */}
         </>
     );
 }

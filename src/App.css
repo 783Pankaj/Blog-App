@@ -38,6 +38,7 @@
 }
 
 .display{
-  display: block;
-  position: relative;
+  position: relativ
+  e;
+  display: flex;
 }
